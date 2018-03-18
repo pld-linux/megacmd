@@ -6,6 +6,7 @@ License:	Freeware
 Group:		Applications
 Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://github.com/meganz/sdk/archive/5d211ac6/mega-sdk-v3.2.8-209-g5d211ac6.tar.gz
+Patch0:		libtool.patch
 URL:		https://mega.nz/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

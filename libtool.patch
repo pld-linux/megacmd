@@ -1,0 +1,45 @@
+--- MEGAcmd-0.9.8/sdk/configure.ac~	2018-03-17 22:07:36.000000000 +0200
++++ MEGAcmd-0.9.8/sdk/configure.ac	2018-03-17 22:08:09.737558496 +0200
+@@ -154,7 +154,8 @@
+ WIN32=no
+ DARWIN=no
+ ANDROID=no
+-AC_MSG_CHECKING([if building for Win32 platform])
++LINUX=no
++AC_MSG_CHECKING([platform options])
+ case $host in
+   *-*-cygwin*)
+     LIBS_EXTRA="-luser32 -lkernel32"
+@@ -201,7 +201,10 @@
+     ;;
+   *-android*)
+     ANDROID=yes
+-    ;;    
++    ;;
++  *-linux*)
++    LINUX=yes
++    ;;
+   *)
+     LIBS_EXTRA=""
+     ;;
+@@ -210,6 +213,7 @@
+ AM_CONDITIONAL([WIN32], [test "${WIN32}" = "yes"])
+ AM_CONDITIONAL([DARWIN], [test "${DARWIN}" = "yes"])
+ AM_CONDITIONAL([ANDROID], [test "${ANDROID}" = "yes"])
++AM_CONDITIONAL([LINUX], [test "${LINUX}" = "yes"])
+ 
+ AC_SUBST(LIBS_EXTRA)
+ 
+--- MEGAcmd-0.9.8/sdk/Makefile.am~	2018-03-17 21:18:50.000000000 +0200
++++ MEGAcmd-0.9.8/sdk/Makefile.am	2018-03-17 21:18:53.815527745 +0200
+@@ -42,6 +42,10 @@
+ AM_LIBTOOLFLAGS="--tag=CXX"
+ endif
+ 
++if LINUX
++AM_LIBTOOLFLAGS="--tag=CXX"
++endif
++
+ VERSION_INFO=$(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ 
+ CLEANFILES=
