@@ -1,11 +1,13 @@
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
-Version:	0.9.8
-Release:	0.1
+Version:	1.0.0
+Release:	1
 License:	Freeware
 Group:		Applications
 Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}/%{name}-%{version}.tar.gz
-Source1:	https://github.com/meganz/sdk/archive/5d211ac6/mega-sdk-v3.2.8-209-g5d211ac6.tar.gz
+# Source0-md5:	8af6215ce167b15b92f8683c4c1caa7c
+Source1:	https://github.com/meganz/sdk/archive/f3a3b810/mega-sdk-v3.4.0-216-gf3a3b810.tar.gz
+# Source1-md5:	dccc60aa2ac5680a719b74bc0968984f
 Patch0:		libtool.patch
 URL:		https://mega.nz/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
