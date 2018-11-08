@@ -1,7 +1,7 @@
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Applications
 Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}/%{name}-%{version}.tar.gz
@@ -127,8 +127,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libmega.so.30401
-%attr(755,root,root) %ghost %{_libdir}/libmega.so.*.*.*
+%attr(755,root,root) %{_libdir}/libmega.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libmega.so.30401
 
 %files devel
 %defattr(644,root,root,755)
