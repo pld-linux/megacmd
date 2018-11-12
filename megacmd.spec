@@ -2,7 +2,8 @@ Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
 Version:	1.0.0
 Release:	2
-License:	BSD-like
+# https://github.com/meganz/MEGAcmd/commit/b366c77370c277223be123e05e5ef15fafbce185#r31261647
+License:	BSD 2-Clause "Simplified" License
 Group:		Applications
 Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	8af6215ce167b15b92f8683c4c1caa7c
