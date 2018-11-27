@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_without	fuse       # build megafuse
+%bcond_without	fuse		# build megafuse
+%bcond_without	libmediainfo	# build with libmediainfo
 
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
@@ -23,13 +24,12 @@ BuildRequires:	cppcheck
 BuildRequires:	cryptopp-devel
 BuildRequires:	ffmpeg-devel
 %{?with_fuse:BuildRequires:	libfuse-devel}
-BuildRequires:	libmediainfo-devel
+%{?with_mediainfo:BuildRequires:	libmediainfo-devel}
 BuildRequires:	libraw-devel
 BuildRequires:	libsodium-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libuv-devel
-BuildRequires:	libzen-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-cxx-devel
 BuildRequires:	pcre-devel
@@ -81,6 +81,7 @@ mv sdk-*/* sdk
 autoreconf -vif
 %configure \
 	%{__with_without fuse} \
+	%{__with_without libmediainfo} \
 	--disable-silent-rules
 %{__make}
 
