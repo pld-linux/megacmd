@@ -43,3 +43,47 @@
  VERSION_INFO=$(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
  
  CLEANFILES=
+--- MEGAcmd-1.0.0/configure.ac~	2018-09-27 10:53:46.000000000 +0300
++++ MEGAcmd-1.0.0/configure.ac	2018-11-27 17:15:52.861941207 +0200
+@@ -157,6 +157,7 @@
+ WIN32=no
+ DARWIN=no
+ ANDROID=no
++LINUX=no
+ AC_MSG_CHECKING([if building for Win32 platform])
+ case $host in
+   *-*-cygwin*)
+@@ -176,6 +177,9 @@
+   *-android*)
+     ANDROID=yes
+     ;;    
++  *-linux*)
++    LINUX=yes
++    ;;
+   *)
+     LIBS_EXTRA=""
+     ;;
+@@ -184,9 +188,7 @@
+ AM_CONDITIONAL([WIN32], [test "${WIN32}" = "yes"])
+ AM_CONDITIONAL([DARWIN], [test "${DARWIN}" = "yes"])
+ AM_CONDITIONAL([ANDROID], [test "${ANDROID}" = "yes"])
+-
+-
+-
++AM_CONDITIONAL([LINUX], [test "${LINUX}" = "yes"])
+ 
+ SAVE_LDFLAGS=$LDFLAGS
+ SAVE_CXXFLAGS=$CXXFLAGS
+--- megacmd/Makefile.am~	2018-03-17 21:54:10.866756361 +0200
++++ megacmd/Makefile.am	2018-11-27 17:11:24.444491866 +0200
+@@ -35,6 +35,10 @@
+ AM_LIBTOOLFLAGS="--tag=CXX"
+ endif
+ 
++if LINUX
++AM_LIBTOOLFLAGS="--tag=CXX"
++endif
++
+ VERSION_INFO=$(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ 
+ CLEANFILES=
