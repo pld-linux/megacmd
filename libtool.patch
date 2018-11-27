@@ -1,3 +1,7 @@
+upstream:
+- https://github.com/meganz/MEGAcmd/pull/128
+- https://github.com/meganz/sdk/pull/1288
+
 --- MEGAcmd-0.9.8/sdk/configure.ac~	2018-03-17 22:07:36.000000000 +0200
 +++ MEGAcmd-0.9.8/sdk/configure.ac	2018-03-17 22:08:09.737558496 +0200
 @@ -154,7 +154,8 @@
