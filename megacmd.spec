@@ -11,6 +11,27 @@ Source1:	https://github.com/meganz/sdk/archive/f3a3b810/mega-sdk-v3.4.0-216-gf3a
 # Source1-md5:	dccc60aa2ac5680a719b74bc0968984f
 Patch0:		libtool.patch
 URL:		https://mega.nz/
+BuildRequires:	FreeImage-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	c-ares-devel
+BuildRequires:	cppcheck
+BuildRequires:	cryptopp-devel
+BuildRequires:	ffmpeg-devel
+BuildRequires:	libmediainfo-devel
+BuildRequires:	libraw-devel
+BuildRequires:	libsodium-devel
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
+BuildRequires:	libuv-devel
+BuildRequires:	libzen-devel
+BuildRequires:	openssl-devel
+BuildRequires:	pcre-cxx-devel
+BuildRequires:	pcre-devel
+BuildRequires:	pkgconfig
+BuildRequires:	readline-devel
+BuildRequires:	sqlite3-devel
+BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
