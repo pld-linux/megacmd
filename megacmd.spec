@@ -1,7 +1,8 @@
 #
 # Conditional build:
-%bcond_without	fuse		# build megafuse
-%bcond_without	libmediainfo	# build with libmediainfo
+%bcond_without	fuse			# build megafuse
+%bcond_without	libmediainfo	# build with libmediainfo for media file attributes
+%bcond_without	ffmpeg			# build with ffmpeg for thumbnails and previews
 
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
@@ -21,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	c-ares-devel
 BuildRequires:	cryptopp-devel
-BuildRequires:	ffmpeg-devel
+%{?with_ffmpeg:BuildRequires:	ffmpeg-devel}
 %{?with_fuse:BuildRequires:	libfuse-devel}
 %{?with_mediainfo:BuildRequires:	libmediainfo-devel}
 BuildRequires:	libraw-devel
@@ -80,6 +81,7 @@ mv sdk-*/* sdk
 autoreconf -vif
 %configure \
 	ac_cv_prog_HAVE_CPPCHECK=/usr/bin/cppcheck \
+	%{__with_without ffmpeg} \
 	%{__with_without fuse} \
 	%{__with_without libmediainfo} \
 	--disable-silent-rules
