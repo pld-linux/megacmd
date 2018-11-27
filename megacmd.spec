@@ -20,7 +20,6 @@ BuildRequires:	FreeImage-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	c-ares-devel
-BuildRequires:	cppcheck
 BuildRequires:	cryptopp-devel
 BuildRequires:	ffmpeg-devel
 %{?with_fuse:BuildRequires:	libfuse-devel}
@@ -80,6 +79,7 @@ mv sdk-*/* sdk
 %build
 autoreconf -vif
 %configure \
+	ac_cv_prog_HAVE_CPPCHECK=/usr/bin/cppcheck \
 	%{__with_without fuse} \
 	%{__with_without libmediainfo} \
 	--disable-silent-rules
