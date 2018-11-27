@@ -80,7 +80,7 @@ mv sdk-*/* sdk
 %build
 autoreconf -vif
 %configure \
-	%{with_without fuse} \
+	%{__with_without fuse} \
 	--disable-silent-rules
 %{__make}
 
