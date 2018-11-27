@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	fuse       # build megafuse
+
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
 Version:	1.0.0
@@ -18,6 +22,7 @@ BuildRequires:	c-ares-devel
 BuildRequires:	cppcheck
 BuildRequires:	cryptopp-devel
 BuildRequires:	ffmpeg-devel
+%{?with_fuse:BuildRequires:	libfuse-devel}
 BuildRequires:	libmediainfo-devel
 BuildRequires:	libraw-devel
 BuildRequires:	libsodium-devel
@@ -43,6 +48,7 @@ synchronization and backup of local folders into your MEGA account.
 %package libs
 Summary:	Shared libmega library
 Group:		Libraries
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description libs
 Shared libmega library.
@@ -59,6 +65,13 @@ Header files for %{name} library.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe biblioteki %{name}.
 
+%package fuse
+Summary:	megafuse
+Group:		Libraries
+
+%description fuse
+megafuse.
+
 %prep
 %setup -q -n MEGAcmd-%{version} -a1
 mv sdk-*/* sdk
@@ -67,6 +80,7 @@ mv sdk-*/* sdk
 %build
 autoreconf -vif
 %configure \
+	%{with_without fuse} \
 	--disable-silent-rules
 %{__make}
 
@@ -144,8 +158,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-webdav
 %attr(755,root,root) %{_bindir}/mega-whoami
 %attr(755,root,root) %{_bindir}/megacli
-%attr(755,root,root) %{_bindir}/megafuse
 %attr(755,root,root) %{_bindir}/megasimplesync
+
+%if %{with fuse}
+%files fuse
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/megafuse
+%endif
 
 %files libs
 %defattr(644,root,root,755)
