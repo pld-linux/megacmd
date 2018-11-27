@@ -1,8 +1,9 @@
 #
 # Conditional build:
+%bcond_without	ffmpeg			# build with ffmpeg for thumbnails and previews
+%bcond_without	freeimage		# build with freeimage to manage thumbnails/previews
 %bcond_without	fuse			# build megafuse
 %bcond_without	libmediainfo	# build with libmediainfo for media file attributes
-%bcond_without	ffmpeg			# build with ffmpeg for thumbnails and previews
 
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
@@ -17,7 +18,7 @@ Source1:	https://github.com/meganz/sdk/archive/f3a3b810/mega-sdk-v3.4.0-216-gf3a
 # Source1-md5:	dccc60aa2ac5680a719b74bc0968984f
 Patch0:		libtool.patch
 URL:		https://mega.nz/
-BuildRequires:	FreeImage-devel
+%{?with_freeimage:BuildRequires:	FreeImage-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	c-ares-devel
@@ -82,6 +83,7 @@ autoreconf -vif
 %configure \
 	ac_cv_prog_HAVE_CPPCHECK=/usr/bin/cppcheck \
 	%{__with_without ffmpeg} \
+	%{__with_without freeimage} \
 	%{__with_without fuse} \
 	%{__with_without libmediainfo} \
 	--disable-silent-rules
