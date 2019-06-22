@@ -7,16 +7,15 @@
 
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
-Version:	1.0.0
-Release:	3
+Version:	1.1.0
+Release:	1
 # https://github.com/meganz/MEGAcmd/commit/b366c77370c277223be123e05e5ef15fafbce185#r31261647
 License:	BSD 2-Clause "Simplified" License
 Group:		Applications
-Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8af6215ce167b15b92f8683c4c1caa7c
-Source1:	https://github.com/meganz/sdk/archive/f3a3b810/mega-sdk-v3.4.0-216-gf3a3b810.tar.gz
-# Source1-md5:	dccc60aa2ac5680a719b74bc0968984f
-Patch0:		libtool.patch
+Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}_Linux/%{name}-%{version}.tar.gz
+# Source0-md5:	533eaddbb893d5e1a614109cbb78c9a9
+Source1:	https://github.com/meganz/sdk/archive/2c7713d/mega-sdk-v3.4.8.tar.gz
+# Source1-md5:	73218bcc1c5c1cbfbaf6923ad5938427
 URL:		https://mega.nz/
 %{?with_freeimage:BuildRequires:	FreeImage-devel}
 BuildRequires:	autoconf
@@ -74,9 +73,8 @@ Group:		Libraries
 megafuse.
 
 %prep
-%setup -q -n MEGAcmd-%{version} -a1
+%setup -q -n MEGAcmd-%{version}_Linux -a1
 mv sdk-*/* sdk
-%patch0 -p1
 
 %build
 autoreconf -vif
@@ -109,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-attr
 %attr(755,root,root) %{_bindir}/mega-backup
 %attr(755,root,root) %{_bindir}/mega-cancel
+%attr(755,root,root) %{_bindir}/mega-cat
 %attr(755,root,root) %{_bindir}/mega-cd
 %attr(755,root,root) %{_bindir}/mega-cmd
 %attr(755,root,root) %{_bindir}/mega-cmd-server
@@ -117,6 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-cp
 %attr(755,root,root) %{_bindir}/mega-debug
 %attr(755,root,root) %{_bindir}/mega-deleteversions
+%attr(755,root,root) %{_bindir}/mega-df
 %attr(755,root,root) %{_bindir}/mega-du
 %attr(755,root,root) %{_bindir}/mega-errorcode
 %attr(755,root,root) %{_bindir}/mega-exclude
@@ -138,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-logout
 %attr(755,root,root) %{_bindir}/mega-lpwd
 %attr(755,root,root) %{_bindir}/mega-ls
+%attr(755,root,root) %{_bindir}/mega-mediainfo
 %attr(755,root,root) %{_bindir}/mega-mkdir
 %attr(755,root,root) %{_bindir}/mega-mount
 %attr(755,root,root) %{_bindir}/mega-mv
@@ -157,6 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-sync
 %attr(755,root,root) %{_bindir}/mega-thumbnail
 %attr(755,root,root) %{_bindir}/mega-transfers
+%attr(755,root,root) %{_bindir}/mega-tree
 %attr(755,root,root) %{_bindir}/mega-userattr
 %attr(755,root,root) %{_bindir}/mega-users
 %attr(755,root,root) %{_bindir}/mega-version
@@ -174,7 +176,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmega.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmega.so.30401
+%attr(755,root,root) %ghost %{_libdir}/libmega.so.30408
 
 %files devel
 %defattr(644,root,root,755)
