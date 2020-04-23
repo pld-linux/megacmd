@@ -79,7 +79,6 @@ mv sdk-*/* sdk
 %build
 autoreconf -vif
 %configure \
-	ac_cv_prog_HAVE_CPPCHECK=/usr/bin/cppcheck \
 	%{__with_without ffmpeg} \
 	%{__with_without freeimage} \
 	%{__with_without fuse} \
