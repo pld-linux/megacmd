@@ -7,15 +7,15 @@
 
 Summary:	Command Line Interactive and Scriptable Application to access MEGA
 Name:		megacmd
-Version:	1.1.0
-Release:	2
+Version:	1.2.0
+Release:	1
 # https://github.com/meganz/MEGAcmd/commit/b366c77370c277223be123e05e5ef15fafbce185#r31261647
 License:	BSD 2-Clause "Simplified" License
 Group:		Applications
 Source0:	https://github.com/meganz/MEGAcmd/archive/%{version}_Linux/%{name}-%{version}.tar.gz
-# Source0-md5:	533eaddbb893d5e1a614109cbb78c9a9
-Source1:	https://github.com/meganz/sdk/archive/2c7713d/mega-sdk-v3.4.8.tar.gz
-# Source1-md5:	73218bcc1c5c1cbfbaf6923ad5938427
+# Source0-md5:	879d5d2b70508736eff30db420b12cd1
+Source1:	https://github.com/meganz/sdk/archive/de4ff325d/mega-sdk-v3.5.3-1921-gde4ff325d.tar.gz
+# Source1-md5:	8fcb952d8909d3d5deb1c82072d41afe
 URL:		https://mega.nz/
 %{?with_freeimage:BuildRequires:	FreeImage-devel}
 BuildRequires:	autoconf
@@ -145,6 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mega-passwd
 %attr(755,root,root) %{_bindir}/mega-permissions
 %attr(755,root,root) %{_bindir}/mega-preview
+%attr(755,root,root) %{_bindir}/mega-proxy
 %attr(755,root,root) %{_bindir}/mega-put
 %attr(755,root,root) %{_bindir}/mega-pwd
 %attr(755,root,root) %{_bindir}/mega-quit
@@ -176,7 +177,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmega.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmega.so.30408
+%attr(755,root,root) %ghost %{_libdir}/libmega.so.30609
 
 %files devel
 %defattr(644,root,root,755)
